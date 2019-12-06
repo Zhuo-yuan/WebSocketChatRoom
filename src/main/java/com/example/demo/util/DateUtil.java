@@ -1,5 +1,9 @@
 package com.example.demo.util;
 
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -9,9 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 /**
  * @ClassName DateUtil
  * @Author lizhuoyuan
@@ -62,6 +64,7 @@ public class DateUtil {
         System.out.println(getLongAgoYear());
 
     }
+
     private static final Logger logger = LoggerFactory.getLogger(DateUtil.class);
 
     // 用来全局控制 上一周，本周，下一周的周数变化
@@ -75,53 +78,87 @@ public class DateUtil {
     private static String timePattern = "HH:mm";
 
     public static final String TS_FORMAT = DateUtil.getDatePattern() + " HH:mm:ss.S";
-    /** 日期格式yyyy-MM字符串常量 */
+    /**
+     * 日期格式yyyy-MM字符串常量
+     */
     public static final String MONTH_FORMAT = "yyyy-MM";
-    /** 日期格式yyyyMM字符串常量 */
+    /**
+     * 日期格式yyyyMM字符串常量
+     */
     public static final String MONTH_FORMAT_SHORT = "yyyyMM";
-    /** 日期格式yyyy-MM-dd字符串常量 */
+    /**
+     * 日期格式yyyy-MM-dd字符串常量
+     */
     public static final String DATE_FORMAT = "yyyy-MM-dd";
     public static final String DATE_FORMAT_DIT = "yyyy.MM.dd";
-    /** 日期格式yyyyMMdd字符串常量 */
+    /**
+     * 日期格式yyyyMMdd字符串常量
+     */
     public static final String DATE_FORMAT_SHORT = "yyyyMMdd";
-    /** 日期格式yyyyMMddHHmm字符串常量 */
+    /**
+     * 日期格式yyyyMMddHHmm字符串常量
+     */
     public static final String DATE_FORMAT_LONG = "yyyyMMddHHmm";
 
     public static final String DATE_FORMAT_MD = "MMdd";
 
     public static final String DATE_FORMAT_CHN_MD = "M月dd日";
 
-    /** 日期格式yyyy MM dd字符串常量 */
+    /**
+     * 日期格式yyyy MM dd字符串常量
+     */
     public static final String DATE_FORMAT_BANK = "yyyy MM dd";
 
 
-    /** 日期格式HH:mm:ss字符串常量 */
+    /**
+     * 日期格式HH:mm:ss字符串常量
+     */
     public static final String HOUR_FORMAT = "HH:mm:ss";
-    /** 日期格式yyyy-MM-dd HH:mm:ss字符串常量 */
+    /**
+     * 日期格式yyyy-MM-dd HH:mm:ss字符串常量
+     */
     public static final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
-    /** 日期格式yyyy-MM-dd HH:mm:ss字符串常量 */
+    /**
+     * 日期格式yyyy-MM-dd HH:mm:ss字符串常量
+     */
     public static final String DATETIME_FORMAT1 = "yyyy-MM-dd 00:00:00";
-    /** 日期格式yyyy-MM-dd HH:mm:ss字符串常量 */
+    /**
+     * 日期格式yyyy-MM-dd HH:mm:ss字符串常量
+     */
     public static final String DATETIME_FORMAT0 = "yyyy-MM-dd 01:00:00";
-    /** 日期格式yyyy-MM-dd HH:mm:ss字符串常量 */
+    /**
+     * 日期格式yyyy-MM-dd HH:mm:ss字符串常量
+     */
     public static final String DATETIME_FORMAT2 = "yyyy-MM-dd 23:59:59";
-    /** 格式化到小时 */
+    /**
+     * 格式化到小时
+     */
     public static final String HOUR_DATETIME_FORMAT = "yyyy-MM-dd HH";
 
-    /** 日期格式yyyy-MM-dd HH:mm:ss字符串常量 */
+    /**
+     * 日期格式yyyy-MM-dd HH:mm:ss字符串常量
+     */
     public static final String MILLISECOND_DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss.S";
 
-    /** 日期格式yyyy-MM-dd HH:mm:ss字符串常量 */
+    /**
+     * 日期格式yyyy-MM-dd HH:mm:ss字符串常量
+     */
     public static final String MILLI3SECOND_DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
 
-    /** 日期格式yyyy-MM-dd HH:mm:ss字符串常量 */
+    /**
+     * 日期格式yyyy-MM-dd HH:mm:ss字符串常量
+     */
     public static final String yyyyMMddHHmmss_FORMAT = "yyyyMMddHHmmss";
 
     public static final String yyyyMMddHHmmssSSS_FORMAT = "yyyyMMddHHmmssSSS";
 
-    /** 某天开始时分秒字符串常量 00:00:00 */
+    /**
+     * 某天开始时分秒字符串常量 00:00:00
+     */
     public static final String DAY_BEGIN_STRING_HHMMSS = " 00:00:00";
-    /** 某天结束时分秒字符串常量 23:59:59 */
+    /**
+     * 某天结束时分秒字符串常量 23:59:59
+     */
     public static final String DAY_END_STRING_HHMMSS = " 23:59:59";
     private static SimpleDateFormat sdf_date_format = new SimpleDateFormat(DATE_FORMAT);
 
@@ -130,14 +167,16 @@ public class DateUtil {
     private static SimpleDateFormat sdf_hour_format = new SimpleDateFormat(HOUR_FORMAT);
     private static SimpleDateFormat sdf_datetime_format = new SimpleDateFormat(DATETIME_FORMAT);
     private static SimpleDateFormat sdf_datetime_format2 = new SimpleDateFormat(yyyyMMddHHmmss_FORMAT);
-    public static long calTowDateOfDay(Date endDate,Date nowDate){
+
+    public static long calTowDateOfDay(Date endDate, Date nowDate) {
         long nd = 1000 * 24 * 60 * 60;
         long diff = endDate.getTime() - nowDate.getTime();
         // 计算差多少天
         long day = diff / nd;
         return day;
     }
-    public static long calTowDateOfHour(Date endDate,Date nowDate){
+
+    public static long calTowDateOfHour(Date endDate, Date nowDate) {
         long nd = 1000 * 24 * 60 * 60;
         long nh = 1000 * 60 * 60;
         long diff = endDate.getTime() - nowDate.getTime();
@@ -145,7 +184,8 @@ public class DateUtil {
         long hour = diff % nd / nh;
         return hour;
     }
-    public static long calTowDateOfMin(Date endDate,Date nowDate){
+
+    public static long calTowDateOfMin(Date endDate, Date nowDate) {
         long nd = 1000 * 24 * 60 * 60;
         long nh = 1000 * 60 * 60;
         long nm = 1000 * 60;
@@ -154,7 +194,8 @@ public class DateUtil {
         long min = diff % nd % nh / nm;
         return min;
     }
-    public static long calTowDateOfSecond(Date endDate,Date nowDate){
+
+    public static long calTowDateOfSecond(Date endDate, Date nowDate) {
         long nd = 1000 * 24 * 60 * 60;
         long nh = 1000 * 60 * 60;
         long nm = 1000 * 60;
@@ -164,8 +205,9 @@ public class DateUtil {
         long second = diff % nd % nh % nm / ns;
         return second;
     }
-    public static String calTime(Date nowDate,Date create_time){
-        String subTime="";
+
+    public static String calTime(Date nowDate, Date create_time) {
+        String subTime = "";
         long min = 0;
         long day;
         long hour = 0;
@@ -179,22 +221,24 @@ public class DateUtil {
             subTime = hour + "小时前";
         } else if (min > 0) {
             subTime = min + "分钟前";
-        }else if(second > 0) {
+        } else if (second > 0) {
             subTime = second + "秒前";
         }
         return subTime;
     }
+
     public DateUtil() {
     }
 
 
     /**
      * 自定义格式化日期,
+     *
      * @param format
      * @param date
      * @return
      */
-    public static String formatDateTime(String  format,Date date) {
+    public static String formatDateTime(String format, Date date) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
         try {
             return simpleDateFormat.format(date.getTime());
@@ -207,9 +251,9 @@ public class DateUtil {
     /**
      * 获得服务器当前日期及时间，以格式为：yyyy-MM-dd HH:mm:ss的日期字符串形式返回
      *
+     * @return
      * @author dylan_xu
      * @date Mar 11, 2012
-     * @return
      */
     public static String getDateTime() {
         try {
@@ -223,9 +267,9 @@ public class DateUtil {
     /**
      * 获得服务器当前日期，以格式为：yyyy-MM-dd的日期字符串形式返回
      *
+     * @return
      * @author dylan_xu
      * @date Mar 11, 2012
-     * @return
      */
     public static String getDate() {
         try {
@@ -239,9 +283,9 @@ public class DateUtil {
     /**
      * 获得服务器当前日期，以格式为：yyyy MM dd的日期字符串形式返回
      *
+     * @return
      * @author dylan_xu
      * @date Mar 11, 2012
-     * @return
      */
     public static String getDateWithBank() {
         try {
@@ -255,9 +299,9 @@ public class DateUtil {
     /**
      * 获得服务器当前时间，以格式为：HH:mm:ss的日期字符串形式返回
      *
+     * @return
      * @author dylan_xu
      * @date Mar 11, 2012
-     * @return
      */
     public static String getTime() {
         String temp = " ";
@@ -273,9 +317,9 @@ public class DateUtil {
     /**
      * 统计时开始日期的默认值
      *
+     * @return
      * @author dylan_xu
      * @date Mar 11, 2012
-     * @return
      */
     public static String getStartDate() {
         try {
@@ -289,9 +333,9 @@ public class DateUtil {
     /**
      * 统计时结束日期的默认值
      *
+     * @return
      * @author dylan_xu
      * @date Mar 11, 2012
-     * @return
      */
     public static String getEndDate() {
         try {
@@ -305,9 +349,9 @@ public class DateUtil {
     /**
      * 获得服务器当前日期的年份
      *
+     * @return
      * @author dylan_xu
      * @date Mar 11, 2012
-     * @return
      */
     public static String getYear() {
         try {
@@ -321,9 +365,9 @@ public class DateUtil {
     /**
      * 获得服务器当前日期的年份
      *
+     * @return
      * @author dylan_xu
      * @date Mar 11, 2012
-     * @return
      */
     public static Date getLongAgoYear() {
         Date date = null;
@@ -341,13 +385,12 @@ public class DateUtil {
     }
 
 
-
     /**
      * 获得服务器当前日期的月份
      *
+     * @return
      * @author dylan_xu
      * @date Mar 11, 2012
-     * @return
      */
     public static String getMonth() {
         try {
@@ -363,9 +406,9 @@ public class DateUtil {
     /**
      * 获得服务器在当前月中天数
      *
+     * @return
      * @author dylan_xu
      * @date Mar 11, 2012
-     * @return
      */
     public static String getDay() {
         try {
@@ -379,11 +422,11 @@ public class DateUtil {
     /**
      * 比较两个日期相差的天数
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
      * @param date1
      * @param date2
      * @return
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     public static int getMargin(String date1, String date2) {
         int margin;
@@ -404,11 +447,11 @@ public class DateUtil {
     /**
      * 比较两个日期相差的天数
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
      * @param date1
      * @param date2
      * @return
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     public static double getDoubleMargin(String date1, String date2) {
         double margin;
@@ -429,11 +472,11 @@ public class DateUtil {
     /**
      * 比较两个日期相差的月数
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
      * @param date1
      * @param date2
      * @return
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     public static int getMonthMargin(String date1, String date2) {
         int margin;
@@ -451,11 +494,11 @@ public class DateUtil {
     /**
      * 返回日期加X天后的日期
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
      * @param date
      * @param i
      * @return
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     public static String addDay(String date, int i) {
         try {
@@ -472,11 +515,11 @@ public class DateUtil {
     /**
      * 返回日期加X月后的日期
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
      * @param date
      * @param i
      * @return
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     public static String addMonth(String date, int i) {
         try {
@@ -493,11 +536,11 @@ public class DateUtil {
     /**
      * 返回日期加X年后的日期
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
      * @param date
      * @param i
      * @return
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     public static String addYear(String date, int i) {
         try {
@@ -514,11 +557,11 @@ public class DateUtil {
     /**
      * 返回某年某月中的最大天
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
      * @param year
      * @param month
      * @return
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     public static int getMaxDay(int iyear, int imonth) {
         int day = 0;
@@ -542,12 +585,12 @@ public class DateUtil {
     /**
      * 格式化日期
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
      * @param orgDate
      * @param Type
      * @param Span
      * @return
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     @SuppressWarnings("static-access")
     public String rollDate(String orgDate, int Type, int Span) {
@@ -612,9 +655,9 @@ public class DateUtil {
     /**
      * 返回默认的日期格式
      *
+     * @return
      * @author dylan_xu
      * @date Mar 11, 2012
-     * @return
      */
     public static synchronized String getDatePattern() {
         defaultDatePattern = DATETIME_FORMAT;
@@ -624,10 +667,10 @@ public class DateUtil {
     /**
      * 将指定日期按默认格式进行格式代化成字符串后输出如：yyyy-MM-dd
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
      * @param aDate
      * @return
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     public static final String getDate(Date aDate) {
         SimpleDateFormat df = null;
@@ -642,10 +685,10 @@ public class DateUtil {
     /**
      * 取得给定日期的时间字符串，格式为当前默认时间格式
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
      * @param theTime
      * @return
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     public static String getTimeNow(Date theTime) {
         return getDateTime(timePattern, theTime);
@@ -654,10 +697,10 @@ public class DateUtil {
     /**
      * 取得当前时间的Calendar日历对象
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
      * @return
      * @throws ParseException
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     public Calendar getToday() throws ParseException {
         Date today = new Date();
@@ -671,11 +714,11 @@ public class DateUtil {
     /**
      * 将日期类转换成指定格式的字符串形式
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
      * @param aMask
      * @param aDate
      * @return
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     public static final String getDateTime(String aMask, Date aDate) {
         SimpleDateFormat df = null;
@@ -693,10 +736,10 @@ public class DateUtil {
     /**
      * 将指定的日期转换成默认格式的字符串形式
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
      * @param aDate
      * @return
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     public static final String convertDateToString(Date aDate) {
         return getDateTime(getDatePattern(), aDate);
@@ -705,14 +748,12 @@ public class DateUtil {
     /**
      * 将日期字符串按指定格式转换成日期类型
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
-     * @param aMask
-     *            指定的日期格式，如:yyyy-MM-dd
-     * @param strDate
-     *            待转换的日期字符串
+     * @param aMask   指定的日期格式，如:yyyy-MM-dd
+     * @param strDate 待转换的日期字符串
      * @return
      * @throws ParseException
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     public static final Date convertStringToDate(String aMask, String strDate) throws ParseException {
         SimpleDateFormat df = null;
@@ -743,17 +784,17 @@ public class DateUtil {
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
-        return getDateTime(format,date);
+        return getDateTime(format, date);
     }
 
     /**
      * 将日期字符串按默认格式转换成日期类型
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
      * @param strDate
      * @return
      * @throws ParseException
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     public static Date convertStringToDate(String strDate) throws ParseException {
         Date aDate = null;
@@ -773,9 +814,9 @@ public class DateUtil {
     /**
      * 返回一个JAVA简单类型的日期字符串
      *
+     * @return
      * @author dylan_xu
      * @date Mar 11, 2012
-     * @return
      */
     public static String getSimpleDateFormat() {
         SimpleDateFormat formatter = new SimpleDateFormat();
@@ -786,18 +827,17 @@ public class DateUtil {
     /**
      * 将指定字符串格式的日期与当前时间比较
      *
+     * @param strDate 需要比较时间
+     * @return <p>
+     * int code
+     * <ul>
+     * <li>-1 当前时间 < 比较时间</li>
+     * <li>0 当前时间 = 比较时间</li>
+     * <li>>=1当前时间 > 比较时间</li>
+     * </ul>
+     * </p>
      * @author DYLAN
      * @date Feb 17, 2012
-     * @param strDate
-     *            需要比较时间
-     * @return <p>
-     *         int code
-     *         <ul>
-     *         <li>-1 当前时间 < 比较时间</li>
-     *         <li>0 当前时间 = 比较时间</li>
-     *         <li>>=1当前时间 > 比较时间</li>
-     *         </ul>
-     *         </p>
      */
     public static int compareToCurTime(String strDate) {
         if (StringUtils.isBlank(strDate)) {
@@ -874,8 +914,8 @@ public class DateUtil {
     @SuppressWarnings("deprecation")
     public static String getMonthLastDay(int month) {
         Date date = new Date();
-        int[][] day = { { 0, 30, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 },
-                { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 } };
+        int[][] day = {{0, 30, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
+                {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}};
         int year = date.getYear() + 1900;
         if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
             return day[1][month] + "";
@@ -892,8 +932,8 @@ public class DateUtil {
      * @return 指定月的总天数
      */
     public static String getMonthLastDay(int year, int month) {
-        int[][] day = { { 0, 30, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 },
-                { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 } };
+        int[][] day = {{0, 30, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
+                {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}};
         if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
             return day[1][month] + "";
         } else {
@@ -904,10 +944,10 @@ public class DateUtil {
     /**
      * 判断是平年还是闰年
      *
-     * @author dylan_xu
-     * @date Mar 11, 2012
      * @param year
      * @return
+     * @author dylan_xu
+     * @date Mar 11, 2012
      */
     public static boolean isLeapyear(int year) {
         if ((year % 4 == 0 && year % 100 != 0) || (year % 400) == 0) {
@@ -920,9 +960,9 @@ public class DateUtil {
     /**
      * 取得当前时间的日戳
      *
+     * @return
      * @author dylan_xu
      * @date Mar 11, 2012
-     * @return
      */
     @SuppressWarnings("deprecation")
     public static String getTimestamp() {
@@ -945,11 +985,10 @@ public class DateUtil {
     }
 
     /**
+     * @param param
+     * @return String 返回类型
      * @Title: getStartTime
      * @Description: 取某一天的最开始的时分秒
-     * @param param
-     * @return 参数说明
-     * @return String 返回类型
      */
     public static String getStartTime(Date param) {
         return sdf_datetime_format.format(addStartTime(param));
@@ -960,11 +999,10 @@ public class DateUtil {
     }
 
     /**
+     * @param param
+     * @return String 返回类型
      * @Title: getEndTime
      * @Description: 取某一天的结束时分秒
-     * @param param
-     * @return 参数说明
-     * @return String 返回类型
      */
     public static String getEndTime(Date param) {
         return sdf_datetime_format.format(addEndTime(param));
@@ -1039,15 +1077,12 @@ public class DateUtil {
     }
 
     /**
-     * @param date1
-     *            需要比较的时间 不能为空(null),需要正确的日期格式 ,如：2009-09-12
-     * @param date2
-     *            被比较的时间 为空(null)则为当前时间
-     * @param stype
-     *            返回值类型 0为多少天，1为多少个月，2为多少年
+     * @param date1 需要比较的时间 不能为空(null),需要正确的日期格式 ,如：2009-09-12
+     * @param date2 被比较的时间 为空(null)则为当前时间
+     * @param stype 返回值类型 0为多少天，1为多少个月，2为多少年
      * @return 举例： compareDate("2009-09-12", null, 0); //比较天
-     *         compareDate("2009-09-12", null, 1);//比较月
-     *         compareDate("2009-09-12", null, 2);//比较年
+     * compareDate("2009-09-12", null, 1);//比较月
+     * compareDate("2009-09-12", null, 2);//比较年
      */
     public static int compareDate(String startDay, String endDay, int stype) {
         int n = 0;
@@ -1117,8 +1152,7 @@ public class DateUtil {
     /**
      * method 将字符串类型的日期转换为一个timestamp（时间戳记java.sql.Timestamp）
      *
-     * @param dateString
-     *            需要转换为timestamp的字符串
+     * @param dateString 需要转换为timestamp的字符串
      * @return dataTime timestamp
      */
     public final static java.sql.Timestamp string2Time(String dateString) {
@@ -1138,8 +1172,7 @@ public class DateUtil {
     /**
      * method 将字符串类型的日期转换为一个Date（java.sql.Date）
      *
-     * @param dateString
-     *            需要转换为Date的字符串
+     * @param dateString 需要转换为Date的字符串
      * @return dataTime Date
      */
     public final static java.sql.Date string2Date(String dateString) {
@@ -1158,14 +1191,13 @@ public class DateUtil {
 
 
     /**
-     * @Title: string2Date
-     * @Description:
      * @param dateString
      * @param df
-     * @return    参数说明
      * @return java.util.Date    返回类型
+     * @Title: string2Date
+     * @Description:
      */
-    public final static java.util.Date string2Date(String dateString,String df) {
+    public final static java.util.Date string2Date(String dateString, String df) {
         DateFormat dateFormat = new SimpleDateFormat(df, Locale.SIMPLIFIED_CHINESE);
         dateFormat.setLenient(false);
         java.util.Date date = null;
@@ -1676,7 +1708,7 @@ public class DateUtil {
 
     // 获得本季度
     public static String getThisSeasonTime(int month) {
-        int array[][] = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 }, { 10, 11, 12 } };
+        int array[][] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}};
         int season = 1;
         if (month >= 1 && month <= 3) {
             season = 1;
@@ -1709,10 +1741,8 @@ public class DateUtil {
     /**
      * 获取某年某月的最后一天
      *
-     * @param year
-     *            年
-     * @param month
-     *            月
+     * @param year  年
+     * @param month 月
      * @return 最后一天
      */
     public static int getLastDayOfMonth(int year, int month) {
@@ -1735,8 +1765,7 @@ public class DateUtil {
     /**
      * 是否闰年
      *
-     * @param year
-     *            年
+     * @param year 年
      * @return
      */
     public static boolean isLeapYear(int year) {
@@ -1744,12 +1773,10 @@ public class DateUtil {
     }
 
     /**
-     *
-     * @Title: getNowTimeStampTime
-     * @Description: 获取当前时间（TimeStamp类型的）
-     * @return
      * @return Timestamp
      * @throws
+     * @Title: getNowTimeStampTime
+     * @Description: 获取当前时间（TimeStamp类型的）
      */
     public static Timestamp getNowTimeStampTime() {
         Timestamp time = new Timestamp(System.currentTimeMillis());
@@ -1758,15 +1785,12 @@ public class DateUtil {
     }
 
     /**
-     *
-     * @Title: calcTwoTimeDifferInOneHour
-     * @Description: 计算最后一次访问时间距离现在时间是不是在1小时之内。
-     * @param lastestVisitTime
-     *            最后一次访问的毫秒时间
-     * @param nowTime
-     *            现在的毫秒时间
+     * @param lastestVisitTime 最后一次访问的毫秒时间
+     * @param nowTime          现在的毫秒时间
      * @return void
      * @throws
+     * @Title: calcTwoTimeDifferInOneHour
+     * @Description: 计算最后一次访问时间距离现在时间是不是在1小时之内。
      */
     public static boolean calcTwoTimeDifferInOneHour(Long lastestVisitTime, Long nowTime) {
         long differ = nowTime - lastestVisitTime;// 两个时间的毫秒差
@@ -1781,12 +1805,11 @@ public class DateUtil {
     }
 
     /**
-     * @Title: compareDate
-     * @Description: 比较时间大小（第一个时间在第二个时间之前返回-1；第一个时间在第二个时间之后返回1，相同返回0）
      * @param dt1
      * @param dt2
-     * @return    参数说明
      * @return int    返回类型
+     * @Title: compareDate
+     * @Description: 比较时间大小（第一个时间在第二个时间之前返回-1；第一个时间在第二个时间之后返回1，相同返回0）
      */
     public static int compareDate(Date dt1, Date dt2) {
         try {

@@ -1,6 +1,7 @@
 package com.example.demo.util;
 
 import java.util.Random;
+
 /**
  * @ClassName NameBuilder
  * @Author lizhuoyuan
@@ -17,8 +18,9 @@ public class NameBuilder {
 
     /**
      * 使用指定的姓氏，用xings里面的字，随机生成姓名
-     * @param xing		指定姓氏
-     * @param length	指定名字总长度
+     *
+     * @param xing   指定姓氏
+     * @param length 指定名字总长度
      * @return
      */
     public static String build(String xing, int length) {
@@ -46,6 +48,7 @@ public class NameBuilder {
 
     /**
      * 使用xings里面姓氏，用xings里面的字，随机生成姓名
+     *
      * @param length 指定名字总长度
      * @return
      */
@@ -71,6 +74,7 @@ public class NameBuilder {
 
     /**
      * 随机生成2~3个字的名字
+     *
      * @return
      */
     public static String build() {

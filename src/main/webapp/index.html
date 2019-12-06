@@ -56,7 +56,7 @@
 
 		ws.onopen = function(){
 			console.log("连接成功！");
-		}
+		};
 
 		//从服务端接收到消息，将消息回显到聊天记录区
 		ws.onmessage = function(evt){
@@ -86,7 +86,17 @@
 		   }
 	   });*/
 
-   })
+   });
+
+	function CloseWebPage() {
+		window.opener = null;
+		window.open('', '_self', '');
+		window.close();//以上三行可关闭单个页面
+		window.open('', '_top');
+		window.top.close();
+		window.location.href = 'about:blank ';
+		window.close();//上面两次关闭适用于FireFox等浏览器
+	}
 
     var autoWidth;
     var autoHeight;
@@ -131,8 +141,8 @@
 
    // 注销登录
    function doClose(){
-	   alert('退出成功!');
 	   ws.close();
+	   CloseWebPage();
    }
 
    // 发送消息
@@ -174,7 +184,7 @@
 		if (flashStep==3) {flashStep=1;}
 		if (flashStep==1) {document.title="【您有新的消息】在线聊天室";}
 		if (flashStep==2) {document.title="【　　　　　　】在线聊天室";}
-		setTimeout("flashTitle()",500);  //循环
+		setTimeout("flashTitle()",100);  //循环
 	}
 
 	//调用这个执行标题闪烁，而不是直接调用flashTitle，保证多次调用只会执行一次。

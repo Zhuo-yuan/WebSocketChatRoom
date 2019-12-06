@@ -96,7 +96,7 @@ public class WebScoketServer {
     @OnMessage
     public void OnMessage(String message) throws IOException{
         System.out.println("[WebSocket] 收到消息："+ message);
-        message = stringFilter(message);
+        //message = stringFilter(message);
         StringBuffer str = new StringBuffer(this.name +"  "+ DateUtil.getDateTime() + message);
         //判断是否需要指定发送，具体规则自定义
         if (message.indexOf("TOUSER") == 0) {

@@ -17,11 +17,12 @@ public class ImageUtil {
         try {
             InputStream is = new FileInputStream(f);
             OutputStream os = new FileOutputStream(f1);
-            resizeImage(is,os,500,750,"jpg");
+            resizeImage(is, os, 500, 750, "jpg");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     /**
      * resizeImage:(等比例压缩图片文件大小)
      * is  文件输入流
@@ -29,7 +30,7 @@ public class ImageUtil {
      * size 新图片宽度
      * format 新图片格式
      */
-    public static void resizeImage(InputStream is,OutputStream os,int newWidth,int newHeight,String format) throws IOException{
+    public static void resizeImage(InputStream is, OutputStream os, int newWidth, int newHeight, String format) throws IOException {
         BufferedImage prevImage = ImageIO.read(is);
         double width = prevImage.getWidth();
         double height = prevImage.getHeight();
@@ -38,7 +39,7 @@ public class ImageUtil {
         //int newHeight = (int)(height*percent);
         BufferedImage image = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_BGR);
         Graphics graphics = image.createGraphics();
-        graphics.drawImage(prevImage, 0, 0, newWidth,newHeight,null);
+        graphics.drawImage(prevImage, 0, 0, newWidth, newHeight, null);
         ImageIO.write(image, format, os);
         os.flush();
         is.close();

@@ -14,13 +14,19 @@ import java.io.InputStream;
  * @Date 2019/12/5 15:34
  **/
 public class FileHandleUtil {
-    /** 绝对路径 **/
+    /**
+     * 绝对路径
+     **/
     private static String absolutePath = "";
 
-    /** 静态目录 **/
+    /**
+     * 静态目录
+     **/
     private static String staticDir = "META-INF/resources/static";
 
-    /** 文件存放的目录 **/
+    /**
+     * 文件存放的目录
+     **/
     private static String fileDir = "/upload/";
 
     /**
@@ -28,9 +34,10 @@ public class FileHandleUtil {
      * 最后文件存放路径为：static/upload/image/test.jpg
      * 文件访问路径为：http://127.0.0.1:8080/upload/image/test.jpg
      * 该方法返回值为：/upload/image/test.jpg
+     *
      * @param inputStream 文件流
-     * @param path 文件路径，如：image/
-     * @param filename 文件名，如：test.jpg
+     * @param path        文件路径，如：image/
+     * @param filename    文件名，如：test.jpg
      * @return 成功：上传后的文件访问路径，失败返回：null
      */
     public static String upload(InputStream inputStream, String path, String filename) {
@@ -55,7 +62,9 @@ public class FileHandleUtil {
      * 创建文件夹路径
      */
     private static void createDirIfNotExists() {
-        if (!absolutePath.isEmpty()) {return;}
+        if (!absolutePath.isEmpty()) {
+            return;
+        }
 
         //获取跟目录
         File file = null;
@@ -64,20 +73,21 @@ public class FileHandleUtil {
         } catch (FileNotFoundException e) {
             throw new RuntimeException("获取根目录失败，无法创建上传目录！");
         }
-        if(!file.exists()) {
+        if (!file.exists()) {
             file = new File("");
         }
 
         absolutePath = file.getAbsolutePath();
 
         File upload = new File(absolutePath, staticDir + fileDir);
-        if(!upload.exists()) {
+        if (!upload.exists()) {
             upload.mkdirs();
         }
     }
 
     /**
      * 删除文件
+     *
      * @param path 文件访问的路径upload开始 如： /upload/image/test.jpg
      * @return true 删除成功； false 删除失败
      */

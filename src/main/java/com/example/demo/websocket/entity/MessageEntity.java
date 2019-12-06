@@ -3,6 +3,7 @@ package com.example.demo.websocket.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 /**
  * @ClassName MessageEntity
  * @Author lizhuoyuan
@@ -12,7 +13,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MessageEntity {
-    /** 1：连接；2：消息*/
+    /**
+     * 1：连接；2：消息
+     */
     private String type;
     private String content;
 

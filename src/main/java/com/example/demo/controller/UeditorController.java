@@ -1,16 +1,19 @@
 package com.example.demo.controller;
 
 import com.example.demo.util.FileHandleUtil;
-import com.example.demo.util.ImageUtil;
-import org.springframework.http.HttpRequest;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.*;
-import java.util.*;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * @ClassName UeditorController
@@ -28,6 +31,7 @@ public class UeditorController {
 
     /**
      * 获取Ueditor的配置文件
+     *
      * @return
      */
     @ResponseBody
@@ -38,7 +42,7 @@ public class UeditorController {
             MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
             MultipartFile multipartFile = multipartHttpServletRequest.getFile("upfile");
             return upload(multipartFile);
-        }else{
+        } else {
             return "{\n" +
                     "        \"imageActionName\": \"uploadimage\",\n" +
                     "            \"imageFieldName\": \"upfile\",\n" +
@@ -69,42 +73,43 @@ public class UeditorController {
     /**
      * Ueditor上传文件
      * 这里以上传图片为例，图片上传后，imgPath将存储图片的保存路径，返回到编辑器中做展示
+     *
      * @param mFile
      * @return
      */
     public String upload(MultipartFile mFile) {
         String result = "";
         PrintWriter out = null;
-        String[] imageTypes= imageFileType.split(",");
+        String[] imageTypes = imageFileType.split(",");
         List<String> fileTypes = new ArrayList<String>();
         Collections.addAll(fileTypes, imageTypes);
-        if(!mFile.isEmpty()) {
+        if (!mFile.isEmpty()) {
             // 这里写你的文件上传逻辑
             // String imgPath = fileUtil.uploadImg(file);
             String oldFileName = "";
             String newFileName = "";
 
-            String filetype = mFile.getOriginalFilename().substring(mFile.getOriginalFilename().lastIndexOf(".")+1, mFile.getOriginalFilename().length());
-            if(fileTypes.contains(filetype.toLowerCase())){
-                if(mFile.getSize()<100*1024*1024){
+            String filetype = mFile.getOriginalFilename().substring(mFile.getOriginalFilename().lastIndexOf(".") + 1, mFile.getOriginalFilename().length());
+            if (fileTypes.contains(filetype.toLowerCase())) {
+                if (mFile.getSize() < 100 * 1024 * 1024) {
                     oldFileName = mFile.getOriginalFilename();
                     String suffixName = oldFileName.substring(oldFileName.lastIndexOf("."));
                     newFileName = UUID.randomUUID() + suffixName;
                     try {
                         InputStream files = mFile.getInputStream();
-                        FileHandleUtil.upload(files,"image/",newFileName);
-                    }catch (Exception e){
+                        FileHandleUtil.upload(files, "image/", newFileName);
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }else{
+                } else {
                     System.out.println("文件太大上传失败！");
                 }
-            }else{
+            } else {
                 System.out.println("文件格式错误！");
             }
             result = "{\n" +
                     "    \"state\": \"SUCCESS\",\n" +
-                    "    \"url\": \"" + localPath+"/"+newFileName + "\",\n" +
+                    "    \"url\": \"" + localPath + "/" + newFileName + "\",\n" +
                     "    \"title\": \"" + oldFileName + "\",\n" +
                     "    \"original\": \"" + newFileName + "\"\n" +
                     "}";
