@@ -9,7 +9,7 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script type="text/javascript" charset="utf-8" src="../static/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="../static/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="../static/ueditor/ueditor.all.js"> </script>
 <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
 <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
 <script type="text/javascript" charset="utf-8" src="../static/ueditor/lang/zh-cn/zh-cn.js"></script>
@@ -22,7 +22,7 @@
     <pre id="content" style="background-color: white;">开始聊天<br/></pre><hr/>
 	  <button class="btn btn-danger" onclick="doClear();">清空会话框</button>
 	  <button class="btn btn-warning" onclick="doClose();">退出聊天</button>
-	  <button class="btn btn-success" onclick="doSendMsg();">发送</button>
+	  <button class="btn btn-success" onclick="doSendMsg();" >发送</button>
 	  <hr/>
 		<div>
 			<!--<textarea class="form-control" style="width: 40%;" rows="3" id="contentInp"></textarea><hr/>-->
@@ -54,7 +54,7 @@
 
 	function startWebSocket(name){
 		console.log("name------"+name);
-		ws = new WebSocket("ws://172.19.1.253:8080/websocket/"+name); //controller层url
+		ws = new WebSocket("ws://10.1.8.15:8080/websocket/"+name); //controller层url
 
 		ws.onopen = function(){
 			console.log("连接成功！");
@@ -143,7 +143,7 @@
 	function doSendMsg(){
 		var htm = ue.getContent();
 		if((htm.indexOf("img") != -1) || (htm.indexOf("IMG") != -1)){
-			htm = htm.slice(0,7)+' title="双击查看大图" onclick="openImage(this)" '+htm.slice(7)
+			htm = htm.slice(0, htm.indexOf("img") + 3)+' title="双击查看大图" onclick="openImage(this)" '+htm.slice(htm.indexOf("img") + 3)
 		}
 		doSend(htm);
         ue.setContent('');

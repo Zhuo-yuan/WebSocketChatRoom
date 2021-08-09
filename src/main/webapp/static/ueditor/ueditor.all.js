@@ -10799,7 +10799,7 @@ UE.plugin.register('autosubmit',function(){
         commands:{
             'autosubmit':{
                 execCommand:function () {
-                    var me=this,
+                    /*var me=this,
                         form = domUtils.findParentByTagName(me.iframe,"form", false);
                     if (form){
                         if(me.fireEvent("beforesubmit")===false){
@@ -10807,7 +10807,8 @@ UE.plugin.register('autosubmit',function(){
                         }
                         me.sync();
                         form.submit();
-                    }
+                    }*/
+                    doSendMsg();
                 }
             }
         }
